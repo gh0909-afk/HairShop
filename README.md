@@ -124,46 +124,36 @@ HairShop 예약 system
         - Supporting Domain:   Dashboard : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함.
         - General Domain:   결제 : 결제서비스로 3rd Party 외부 서비스를 사용하는 것이 경쟁력이 높음 (핑크색으로 이후 전환할 예정)
 
-### 폴리시 부착
+### 폴리시 부착과 컨텍스트 매핑
 
-![image](https://user-images.githubusercontent.com/48303857/79729649-b4003900-832a-11ea-875f-c0e8dfc6ccb4.jpeg)
+![image](https://user-images.githubusercontent.com/63028469/79939797-f183d400-849a-11ea-8c9a-55ddff693df0.png)
 
-### 폴리시의 이동과 컨텍스트 매핑 (Blue는 Pub/Sub, Orange는 Req/Resp)
-
-![image](https://user-images.githubusercontent.com/48303857/79729705-c67a7280-832a-11ea-828f-fc0cc5510e17.jpeg)
-
-![image](https://user-images.githubusercontent.com/48303857/79729768-d72ae880-832a-11ea-9900-8e0e0e281d87.jpeg)
 
 ### 완성된 1차 모형
 
-![image](https://user-images.githubusercontent.com/48303857/79729946-15c0a300-832b-11ea-8247-4e261f22690d.jpeg)
+![image](https://user-images.githubusercontent.com/63028469/79939921-46bfe580-849b-11ea-8664-7f6a45d639d2.png)
+
 
     - View Model 추가
 
 
 ### 1차 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
-
-    - 학생이 강의를 선택하여 수강신청 한다 (ok)
-    - 학생이 결제한다 (ok -sync)
-    - 수강신청이 되면 수강신청 내역이 강사의 강의시스템에 전달된다 (ok - event driven)
-    - 학생이 수강신청을 취소한다 (ok)
-    - 수강신청이 취소되면 결제가 취소된다 (ok)
-    - 강사가 강의를 개설한다 (ok)
-    - 강사가 개설된 강의를 취소한다 (ok)
-    - 강사가 강의를 취소하면 학생의 수강신청이 취소된다 (ok)
-    - 학생이 수강신청 내용을 조회한다 (view)
-    - 강사가 강의수강 인원을 조회한다 (view)
+    - 고객이 원하는 시간을 선택해서 예약한다 (ok)
+    - 헤어샵에서 예약을 확인하고 스타일리스가 시간이 배정된다 (ok)
+    - 예약하면 헤어샵으로 예약 내역이 전달된다 (ok - event driven)
+    - 고객이 예약을 취소할 수 있다 (ok)
+    - 예약이 취소되면 시간이 배정된 스타일리스트가 일정이 취소된다 (ok)
+    - 예약자 현황을 조회한다 (view)
 
 ### 1차 모형에서 요구사항을 커버하도록 모델링됨
 
 ![image](https://user-images.githubusercontent.com/48303857/79814397-17d14300-83b9-11ea-8c7e-3517658dff13.png)
 
 
-    - 강의 신청 시 결제처리 : 서비스는 강의를 제공하는 강사의 이익을 제공해야 하기 때문에 수강신청시 결제처리에 대해서는  Request-Response 방식 처리한다.
-    - 강의 관리 기능은 서비스 제공의 측면이 강하며, 한 번 등록 시 여러명이 학생들이 수강신청을 하기 때문에 수강신청(Front)에 대해 강의관리 서비스는 Async (event-driven), Eventual Consistency 방식으로 처리한다.
-    - 결제시스템이 과중되면 사용자를 잠시동안 받지 않고 결제를 잠시후에 하도록 유도한다 Circuit breaker를 사용하여 
-    - 학생이 강의관리에서 확인할 수 있는 수강신청내용을 수강신청시스템(프론트엔드)에서 확인할 수 있어야 한다 CQRS
-    - 결제를 제외한 나머지 inter-microservice 트랜잭션: 모든 이벤트에 대해 데이터 일관성의 시점이 크리티컬하지 않은 모든 경우가 대부분이라 판단, Eventual Consistency 를 기본으로 채택함.    
+    - 예약 기능은 서비스 제공의 측면이 강하며, 한 번 등록 시 여러명의 고객들이 예약을 하기 때문에 예약(Front)에 대해 헤어샵관리 서비스는 Async (event-driven), Eventual Consistency 방식으로 처리한다.
+    - 예약 시스템이 과중되면 사용자를 잠시동안 받지 않고 잠시후에 하도록 유도한다 Circuit breaker를 사용하여 
+    - 헤어샵에 예약된 고객의 명단을 헤어샵관리시스템(프론트엔드)에서 확인할 수 있어야 한다 CQRS
+    - inter-microservice 트랜잭션: 모든 이벤트에 대해 데이터 일관성의 시점이 크리티컬하지 않은 모든 경우가 대부분이라 판단, Eventual Consistency 를 기본으로 채택함.    
 
 
 ## 헥사고날 아키텍처 다이어그램 도출
