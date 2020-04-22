@@ -26,7 +26,7 @@
   
 # 서비스 시나리오
 
-유데미, Learning Portal
+HairShop 예약 system
 
 기능적 요구사항
 1. 고객이 원하는 시간을 선택해서 예약한다
