@@ -117,7 +117,7 @@ HairShop 예약 system
 
 
 ### 조직 및 요구사항 도출 도출
-![image](https://user-images.githubusercontent.com/63028469/79940741-87b8f980-849d-11ea-8657-1a283cf44e78.png)
+![image](https://user-images.githubusercontent.com/63028469/79945074-074bc600-84a8-11ea-8ee8-b0641097ef43.png)
 
 
 ### 이벤트도출, 액터 커맨드 부착, 어그리게잇, 바운디드 컨텍스트로 묶기
