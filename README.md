@@ -1,8 +1,8 @@
-# SKAdemy
+# NamHairShop
 
 ![image](https://user-images.githubusercontent.com/48303857/79727114-d3956280-8326-11ea-8862-e01ca9a0f949.png)
 
-# 최종 조별과제 - 인터넷 강의수강 시스템
+# 최종 개인과제 - 헤어샵 예약 시스템
 
 - 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
 
