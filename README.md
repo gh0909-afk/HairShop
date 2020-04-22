@@ -39,6 +39,8 @@ HairShop 예약 system
 
 
 비기능적 요구사항
+1. 트랜잭션
+    1. 예약된 시간에 스타일리스트가 없을 경우 예약이 되지 않아야 한다. Sync 호출
 1. 장애격리
     1. 예약시간 관리 기능이 수행되지 않아도 예약은 365일 24시간 받을 수 있어야한다  Async (event-driven), Eventual Consistency
     1. 예약시스템이 과중되면 사용자를 잠시동안 받지 않고 예약을 잠시후에 하도록 유도한다  Circuit breaker, fallback
