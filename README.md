@@ -163,8 +163,7 @@ HairShop 예약 system
 
 ## 헥사고날 아키텍처 다이어그램 도출
     
-![image](https://user-images.githubusercontent.com/63028469/79846797-d3b26280-83f9-11ea-9ad7-a7e6b4bea18e.png)
-
+![image](https://user-images.githubusercontent.com/63028469/79945868-b937c200-84a9-11ea-8098-8875eb7dc303.png)
 
     - Chris Richardson, MSA Patterns 참고하여 Inbound adaptor와 Outbound adaptor를 구분함
     - 호출관계에서 PubSub 과 Req/Resp 를 구분함
