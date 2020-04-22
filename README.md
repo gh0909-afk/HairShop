@@ -145,11 +145,6 @@ HairShop 예약 system
     - 예약이 취소되면 시간이 배정된 스타일리스트가 일정이 취소된다 (ok)
     - 예약자 현황을 조회한다 (view)
 
-### 1차 모형에서 요구사항을 커버하도록 모델링됨
-
-![image](https://user-images.githubusercontent.com/48303857/79814397-17d14300-83b9-11ea-8c7e-3517658dff13.png)
-
-
     - 예약 기능은 서비스 제공의 측면이 강하며, 한 번 등록 시 여러명의 고객들이 예약을 하기 때문에 예약(Front)에 대해 헤어샵관리 서비스는 Async (event-driven), Eventual Consistency 방식으로 처리한다.
     - 예약 시스템이 과중되면 사용자를 잠시동안 받지 않고 잠시후에 하도록 유도한다 Circuit breaker를 사용하여 
     - 헤어샵에 예약된 고객의 명단을 헤어샵관리시스템(프론트엔드)에서 확인할 수 있어야 한다 CQRS
