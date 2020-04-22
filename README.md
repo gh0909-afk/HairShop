@@ -1,6 +1,7 @@
-# NamHairShop
+# HairShop
 
-![image](https://user-images.githubusercontent.com/48303857/79727114-d3956280-8326-11ea-8862-e01ca9a0f949.png)
+![image](https://user-images.githubusercontent.com/63028469/79933589-71a23d80-848b-11ea-9a14-c8cdac44a89c.png)
+
 
 # 개인과제 - 헤어샵 예약 시스템
 
