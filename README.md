@@ -258,7 +258,7 @@ public interface ReservationSystemRepository extends CrudRepository<ReservationS
 
 
 }
-'''
+```
 
 ## 동기식 호출 과 Fallback 처리
 
