@@ -112,9 +112,7 @@ HairShop 예약 system
 
 
 ## Event Storming 결과
-* MSAEz 로 모델링한 이벤트스토밍 결과:  http://msaez.io/#/storming/RYTliHDEOOYT0NAZ6Xoodg4HP3H3/every/18a58ddb3072e7c25041a1c9361a9635/-M5LUZ65cww2eehQz7RL
-
-
+* MSAEz 로 모델링한 이벤트스토밍 결과:  하단 그림 참조
 
 ### 조직 및 요구사항 도출 도출
 ![image](https://user-images.githubusercontent.com/63028469/79945074-074bc600-84a8-11ea-8ee8-b0641097ef43.png)
