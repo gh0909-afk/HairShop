@@ -257,8 +257,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface ReservationSystemRepository extends CrudRepository<ReservationSystem, Integer> {
 
 
-}```
-
+}
+'''
 
 ## 동기식 호출 과 Fallback 처리
 
