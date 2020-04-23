@@ -258,20 +258,6 @@ public interface ReservationSystemRepository extends CrudRepository<ReservationS
 
 
 }```
-- 적용 후 REST API 의 테스트
-```
-# courseRegistrationSystem 서비스의 수강신청 처리
-http POST localhost:8081/courseRegistrationSystem lectureId=1
-```
-![image](https://user-images.githubusercontent.com/48303857/79857038-272bad00-8408-11ea-8096-7f54b482ea54.png)
-
-
-```
-# 주문 상태 확인
-http localhost:8081/courseRegistrationSystem
-```
-![image](https://user-images.githubusercontent.com/48303857/79857153-4d514d00-8408-11ea-83be-cf9e002c9ce5.png)
-
 
 
 ## 동기식 호출 과 Fallback 처리
@@ -281,7 +267,7 @@ http localhost:8081/courseRegistrationSystem
 - 디자이너 정보를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현 
 
 ```
-# (courseRegistrationSystem) PaymentService.java
+# (hairShopManagementSystems) HrSystemService.java
 
 @Service
 @FeignClient(name ="hrSystems", url="http://52.231.118.11:8080")
@@ -295,7 +281,7 @@ public interface HrSystemService {
 
 - 예약시간관리 데이터 생성 직후(@PostPersist) 담당 디자이너를 선택하도록 처리
 ```
-#CourseRegistrationSystem.java (Entity)
+#HairShopManagementSystem.java (Entity)
 
  @PostPersist
     public void onPostPersist(){
@@ -313,73 +299,6 @@ public interface HrSystemService {
 
     }
 ```
-
-
-## 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
-
-
-결제가 이루어진 후에 수강신청시스템으로 이를 알려주는 행위는 동기식이 아니라 비 동기식으로 처리하여 수강신청 완료처리를 위하여 결제가 블로킹 되지 않도록 처리한다.
- 
-- 이를 위하여 결제시스템에 기록을 남긴 후에 곧바로 결제완료이 되었다는 도메인 이벤트를 카프카로 송출한다(Publish)
- 
-```
-...
-    @PostPersist
-    public void onPostPersist(){
-   
-        PaymentCompleted paymentCompleted = new PaymentCompleted();
-        BeanUtils.copyProperties(this, paymentCompleted);
-        paymentCompleted.publish();
-    }
-
-```
-- 수강신청 서비스에서는 결제완료 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다:
-
-```
-public class PolicyHandler{
- ...
-    
-    @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverPaymentCompleted_수강신청완료(@Payload PaymentCompleted paymentCompleted){
-        try {
-            if (paymentCompleted.isMe()) {
-                System.out.println("##### listener 수강신청완료 : " + paymentCompleted.toJson());
-                Optional<CourseRegistrationSystem> courseRegistrationSystemOptional = courseRegistrationSystemRepository.findById(paymentCompleted.getCourseId());
-                CourseRegistrationSystem courseRegistrationSystem = courseRegistrationSystemOptional.get();
-                courseRegistrationSystem.setStatus("결제 완료");
-                courseRegistrationSystem.setStudentId(courseRegistrationSystem.getStudentId());
-
-                courseRegistrationSystemRepository.save(courseRegistrationSystem);
-            }
-        }catch(Exception e) {
-
-        }
-    }
-
-```
-강의 시스템은 수강신청/결제와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 강의 시스템이 유지보수로 인해 잠시 내려간 상태라도 수강신청을 받는데 문제가 없다:
-```
-# 강의 서비스 (lectureSystem) 를 잠시 내려놓음
-
-#수강신청 처리
-http POST localhost:8081/courseRegistrationSystem lectureId=1   #Success
-http POST localhost:8081/courseRegistrationSystem lectureId=2   #Success
-```
-![image](https://user-images.githubusercontent.com/48303857/79857884-6d354080-8409-11ea-9307-02288463bb13.png)
-
-```
-#수강신청 완료상태 까지 Event 진행확인
-```
-![image](https://user-images.githubusercontent.com/48303857/79857914-79b99900-8409-11ea-8658-030267f42214.png)
-```
-#강의 서비스 기동
-cd lectureSystem
-mvn spring-boot:run
-
-#강의수강인원 Update 확인
-콘솔창에서 확인
-```
-![image](https://user-images.githubusercontent.com/48303857/79857956-8f2ec300-8409-11ea-98dd-2dd3667855b5.png)
 
 # 운영
 
