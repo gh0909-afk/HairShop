@@ -323,6 +323,10 @@ public interface HrSystemService {
 - 발송된 Message 확인
 ![image](https://user-images.githubusercontent.com/63028469/80064826-f8324a00-8573-11ea-8b45-d5789d1457ad.png)
 
+## 무정지 배포 Service별 적용
+
+![image](https://user-images.githubusercontent.com/63028469/80066932-e05cc500-8577-11ea-9c99-70f26787a0c0.png)
+
 
 
 
