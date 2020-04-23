@@ -308,13 +308,15 @@ public interface HrSystemService {
 각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD 플랫폼은 Azure를 사용하였으며, pipeline build script 는 각 프로젝트 폴더 이하에 azure-pipeline.yml 에 포함되었다.
 
 - devops를 활용하여 pipeline을 구성하였고, CI CD 자동화를 구현하였다.
-![image](https://user-images.githubusercontent.com/18453570/79851343-2262fb00-8400-11ea-85e9-b4627f9a6d0d.PNG)
+![image](https://user-images.githubusercontent.com/63028469/80063502-0337ab00-8571-11ea-9c9a-1a2ca6de172f.png)
 
 - 아래와 같이 pod 가 정상적으로 올라간 것을 확인하였다.
-![image](https://user-images.githubusercontent.com/18453570/79851342-21ca6480-8400-11ea-914a-e80e14ea93c7.PNG)
+![image](https://user-images.githubusercontent.com/63028469/80063656-53af0880-8571-11ea-9484-76f4ff6dd745.png)
+
 
 - 아래와 같이 쿠버네티스에 모두 서비스로 등록된 것을 확인할 수 있다.
-![image](https://user-images.githubusercontent.com/18453570/79851335-20993780-8400-11ea-988b-33018c526631.PNG)
+![image](https://user-images.githubusercontent.com/63028469/80063704-72ad9a80-8571-11ea-873d-3bdbef527d64.png)
+
 
 
 ## 동기식 호출 / 서킷 브레이킹 / 장애격리
