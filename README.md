@@ -317,6 +317,13 @@ public interface HrSystemService {
 ![image](https://user-images.githubusercontent.com/63028469/80063704-72ad9a80-8571-11ea-873d-3bdbef527d64.png)
 
 
+- 할당된 IP로 Message 발송
+![image](https://user-images.githubusercontent.com/63028469/80064768-d46f0400-8573-11ea-8dd4-eabbb7d1ae86.png)
+
+- 발송된 Message 확인
+![image](https://user-images.githubusercontent.com/63028469/80064826-f8324a00-8573-11ea-8b45-d5789d1457ad.png)
+
+
 
 
 
